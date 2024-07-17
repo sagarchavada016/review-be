@@ -100,7 +100,7 @@ class GetFreelancerReviewListView(generics.ListAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-    ordering_fields = ["date", "rating","created_at"]
+    ordering_fields = ["date", "rating","created_at","reviewer_name","review_text"]
     search_fields = ["reviewer_name", "review_text"]
     pagination_class = CustomPageNumberPagination
 
