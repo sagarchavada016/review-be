@@ -12,6 +12,9 @@ class AddFreelancerView(generics.ListCreateAPIView):
     serializer_class = FreelancerSerializer
     pagination_class = CustomPageNumberPagination
     lookup_field = "id"
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ["created_at", "name"]
+    search_fields = ["name"]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -55,8 +58,8 @@ class SubmitReviewView(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-    ordering_fields = ["date", "rating"]
-    search_fields = ["reviewer_name", "review_text", "freelancer"]
+    ordering_fields = ["date", "rating","created_at"]
+    search_fields = ["reviewer_name", "review_text"]
     pagination_class = CustomPageNumberPagination
 
     def get_queryset(self):
@@ -97,8 +100,8 @@ class GetFreelancerReviewListView(generics.ListAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-    ordering_fields = ["date", "rating"]
-    search_fields = ["reviewer_name", "review_text", "freelancer"]
+    ordering_fields = ["date", "rating","created_at"]
+    search_fields = ["reviewer_name", "review_text"]
     pagination_class = CustomPageNumberPagination
 
     def list(self, request, *args, **kwargs):
