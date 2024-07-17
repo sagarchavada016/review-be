@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import (
     AddFreelancerView,
+    AverageRatingByFreelancerView,
+    AverageRatingForAllReviewsView,
     GetFreelancerReviewListView,
     SubmitReviewView,
     GetFreelancerByIDView,
@@ -31,4 +33,7 @@ urlpatterns = [
         GetFreelancerReviewListView.as_view(),
         name="freelancer-reviews",
     ),
+    path('freelancers/<uuid:id>/average-rating/', AverageRatingByFreelancerView.as_view(), name='average-rating-by-freelancer'),
+    path('reviews/average-rating/', AverageRatingForAllReviewsView.as_view(), name='average-rating-for-all-reviews'),
+
 ]

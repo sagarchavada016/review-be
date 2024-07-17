@@ -115,30 +115,33 @@ class GetFreelancerReviewListView(generics.ListAPIView):
         return Response(serializer.data)
 
 
-# class AverageRatingByFreelancerView(generics.GenericAPIView):
-#     serializer_class = FreelancerSerializer
-#     lookup_field = "id"
+class AverageRatingByFreelancerView(generics.GenericAPIView):
+    serializer_class = FreelancerSerializer
+    lookup_field = "id"
 
-#     def get(self, request, *args, **kwargs):
-#         freelancer_id = self.kwargs["id"]
-#         freelancer = Freelancer.objects.get(id=freelancer_id)
-#         average_rating = Review.objects.filter(freelancer=freelancer).aggregate(
-#             Avg("rating")
-#         )["rating__avg"]
-#         response_data = {
-#             "message": "Retrived Succesfully",
-#             "success": True,
-#             "data": {"freelancer": freelancer.name, "average_rating": average_rating},
-#         }
-#         return Response(response_data, status=status.HTTP_200_OK)
+    def get(self, request, *args, **kwargs):
+        freelancer_id = self.kwargs["id"]
+        freelancer = Freelancer.objects.get(id=freelancer_id)
+        average_rating = Review.objects.filter(freelancer=freelancer).aggregate(
+            Avg("rating")
+        )["rating__avg"]
+        response_data = {
+            "message": "Average Retrived Succesfully",
+            "success": True,
+            "data": {"freelancer": freelancer.name, "average_rating": average_rating},
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
 
 
-# class AverageRatingForAllReviewsView(generics.GenericAPIView):
+class AverageRatingForAllReviewsView(generics.GenericAPIView):
 
-#     def get(self, request, *args, **kwargs):
-#         average_rating = Review.objects.aggregate(Avg("rating"))["rating__avg"]
-#         response_data = {
-#             "success": True,
-#             "average_rating": average_rating,
-#         }
-#         return Response(response_data, status=status.HTTP_200_OK)
+    def get(self, request, *args, **kwargs):
+        average_rating = Review.objects.aggregate(Avg("rating"))["rating__avg"]
+        if average_rating is not None:
+            average_rating = round(average_rating, 2)
+        response_data = {
+            "message":"All Review Average rating retrive Succesfully",
+            "success": True,
+            "average_rating": average_rating,
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
