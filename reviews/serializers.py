@@ -20,7 +20,7 @@ class FreelancerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Freelancer
-        fields = ["id", "name", "review_count",]
+        fields = ["id", "name", "review_count", "created_at"]
 
     def get_review_count(self, obj):
         return Review.objects.filter(freelancer=obj).count()

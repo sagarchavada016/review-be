@@ -17,7 +17,7 @@ urlpatterns = [
     ),
     ########################################################################
     path(
-        "reviews/<uuid:freelancer_id>/",
+        "review/<uuid:freelancer_id>/",
         SubmitReviewView.as_view(),
         name="review-submit",
     ),
