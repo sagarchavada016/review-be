@@ -38,7 +38,14 @@ Install the necessary packages by running:
 pip install -r requirements.txt
 ```
 
-### 4. Initialize the Database and Run Migrations
+### 4. .env Setup
+ Create a .env file in root and add ``SECRET_KEY``,``ALLOWED_HOSTS``,``DB_NAME``,
+``DB_USER``,
+``DB_PASSWORD``,
+``DB_HOST``,
+``DB_PORT``.
+
+### 5. Initialize the Database and Run Migrations
 
 Run the following command to initialize the PostgreSQL database and apply migrations:
 
@@ -46,7 +53,7 @@ Run the following command to initialize the PostgreSQL database and apply migrat
 python manage.py init_db
 ```
 
-### 5. Run the Development Server
+### 6. Run the Development Server
 
 Start the Django development server with:
 
@@ -55,6 +62,6 @@ python manage.py runserver
 ```
 You can now access the project at http://127.0.0.1:8000.
 
-### 6. Swagger Documentation
+### 7. Swagger Documentation
 
 You can access the project swagger documentation at http://127.0.0.1:8000/swagger/.
