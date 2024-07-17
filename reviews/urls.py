@@ -8,8 +8,8 @@ from .views import (
 
 urlpatterns = [
     ######################################################################
-    path("freelancers/", AddFreelancerView.as_view(), name="freelancer-add"),
-    path("freelancer/", AddFreelancerView.as_view(), name="freelancer-get"),
+    path("freelancer/", AddFreelancerView.as_view(), name="freelancer-add"),
+    path("freelancers/", AddFreelancerView.as_view(), name="freelancer-get"),
     path(
         "freelancers/<uuid:id>/",
         GetFreelancerByIDView.as_view(),
